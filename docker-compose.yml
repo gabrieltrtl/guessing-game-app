@@ -1,0 +1,23 @@
+services:
+  my-node-app:
+    build: 
+      context: ./server
+      dockerfile: Dockerfile
+    volumes:
+      - ./server:/app/server  # Montando o diretório src para permitir recarregamento a quente
+    ports:
+      - "3000:3000"      # Mapeando a porta 3000
+    environment:
+      - NODE_ENV=development
+
+  react:
+    build: 
+      context: ./client
+      dockerfile: Dockerfile
+    ports: 
+      - "5173:5173"
+    volumes: 
+      - ./client:/app
+      - /app/node_modules
+    environment:
+      - CHOKIDAR_USEPOLLING=true

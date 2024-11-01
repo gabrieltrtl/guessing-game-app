@@ -1,0 +1,46 @@
+.guessingGame {
+  background-color: #F7F7F7;
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.title {
+  color: #303633;
+  margin-bottom: 0.625rem;
+  text-transform: uppercase;
+}
+
+.subtitle {
+  font-size: 14px;
+  text-align: center;
+  color: #838584;
+  margin-bottom: 10px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.numberInput {
+  margin-bottom: 6px;
+  border-radius: 6px;
+  align-self: center;
+  min-width: 100px;
+  border: 2px solid #7D55AE;
+  text-align: center;
+}
+
+.btn {
+  background-color: #7D55AE;
+  color: #F7F7F7;
+  align-self: center;
+  padding: 10px 24px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+.message {
+  color: red;
+  text-align: center;
+}

@@ -1,0 +1,6 @@
+body {
+  background-image: linear-gradient(to right, #7D55AE, #6777E6);
+  display: grid;
+  place-items: center;
+}
+
