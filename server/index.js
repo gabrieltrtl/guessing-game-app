@@ -9,6 +9,12 @@ app.use(express.json())
 
 let numeroSecreto = Math.floor(Math.random() * 100) + 1;
 
+app.post('/reiniciar', (req,res) => {
+  console.log('Requisição para reiniciar recebida');
+  numeroSecreto = Math.floor(Math.random() * 100) + 1
+  res.send('O jogo foi reiniciado! Tente adivinhar o novo número.')
+})
+
 app.post('/', (req, res) => {
   const { palpite } = req.body;
 
