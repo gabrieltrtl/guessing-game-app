@@ -13,5 +13,5 @@ COPY . .
 
 EXPOSE 3000
 
-CMD ["nodemon", "-L", ".server/index.js"]
+CMD ["nodemon", "-L", "server/server.js"]
 

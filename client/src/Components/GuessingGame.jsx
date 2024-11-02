@@ -81,7 +81,7 @@ const GuessingGame = () => {
           {message && <p className={styles.message}>{message}</p>}
       </form>
       <button className={styles.restartBtn} onClick={resetGame}>Reiniciar Jogo</button>
-      <p>Tentativas: {attempts}</p>
+      <p className={styles.attempts}>Tentativas: {attempts}</p>
     </div>
   )
 }
