@@ -7,7 +7,7 @@ const { PORT = '3000' } = process.env;
 
 app.use(cors());
 app.use(express.json());
-app.use(gameRoutes);
+app.use('/game', gameRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is Listening Port ${PORT}`)
