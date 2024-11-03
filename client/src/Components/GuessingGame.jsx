@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './GuessingGame.module.css';
 
 const GuessingGame = () => {
   const [guess, setGuess] = useState('');
   const [message, setMessage] = useState('');
-  const [attempts, setAttempts] = useState(0);
+  const [attempts, setAttempts] = useState(20);
+  const [historico, setHistorico] = useState([]);
   
   const handleGuessChange = (e) => {
     setGuess(e.target.value)
@@ -13,10 +14,9 @@ const GuessingGame = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setMessage(''); // Limpa a mensagem anterior
-    setAttempts((prev) => prev + 1);
 
     try {
-      const response = await fetch('http://localhost:3000/', {
+      const response = await fetch('http://localhost:3000/game', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -26,15 +26,18 @@ const GuessingGame = () => {
         }),
       });
 
+      
+      const data = await response.json();
+
       if (!response.ok) {
-        throw new Error('Erro ao enviar palpite')
+        throw new Error(data.message || 'Erro ao enviar palpite');
       }
 
-      const data = await response.text();
-      setMessage(data);
-
+      setMessage(data.message);
+      setAttempts(data.tentativas)
       setGuess('');
-
+      setHistorico(data.historico)
+      
     } catch (error) {
       setMessage(error.message);
     }
@@ -42,7 +45,7 @@ const GuessingGame = () => {
 
   const resetGame = async () => {
   try {
-    const response = await fetch('http://localhost:3000/reiniciar', {
+    const response = await fetch('http://localhost:3000/game/reiniciar', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -57,13 +60,28 @@ const GuessingGame = () => {
 
     const data = await response.text();
     setMessage(data);
-    setAttempts(0);
+    setAttempts(20);
     setGuess('');
+    setHistorico([]);
 
   } catch (error) {
     setMessage(error.message);
   }
-};
+  };
+
+  useEffect(() => {
+    const fetchHistorico = async () => {
+      try {
+        const response = await fetch('http://localhost:3000/game/historico');
+        const data = await response.json();
+        setHistorico(data);
+      } catch (error) {
+        console.log("Erro ao buscar histórico", error);
+      }
+    }
+
+    fetchHistorico();
+  }, [])
 
   return (
     <div className={styles.guessingGame}>
@@ -81,7 +99,16 @@ const GuessingGame = () => {
           {message && <p className={styles.message}>{message}</p>}
       </form>
       <button className={styles.restartBtn} onClick={resetGame}>Reiniciar Jogo</button>
-      <p className={styles.attempts}>Tentativas: {attempts}</p>
+      <p className={styles.attempts}>Restam {attempts} Tentativas</p>
+
+      <h3>Histórico de Tentativas</h3>
+      <ul>
+        {historico.map((item, index) => (
+          <li key={index}>
+            Valor do Palpite: {item.palpite} - {item.resultado}
+          </li>
+        ))}
+      </ul>
     </div>
   )
 }
