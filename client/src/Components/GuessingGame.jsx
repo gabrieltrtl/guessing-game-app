@@ -101,10 +101,10 @@ const GuessingGame = () => {
       <button className={styles.restartBtn} onClick={resetGame}>Reiniciar Jogo</button>
       <p className={styles.attempts}>Restam {attempts} Tentativas</p>
 
-      <h3>Histórico de Tentativas</h3>
+      <h3 className={styles.history_title}>Histórico de Tentativas</h3>
       <ul>
         {historico.map((item, index) => (
-          <li key={index}>
+          <li className={styles.history_value} key={index}>
             Valor do Palpite: {item.palpite} - {item.resultado}
           </li>
         ))}

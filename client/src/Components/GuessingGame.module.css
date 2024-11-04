@@ -16,7 +16,7 @@
 .subtitle {
   font-size: 0.875rem;
   text-align: center;
-  color: #838584;
+  color: #353232;
   margin-bottom: 0.625rem;
   text-transform: uppercase;
 }
@@ -45,6 +45,11 @@
   text-transform: uppercase;
   font-weight: 700;
   font-size: 0.75rem;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #6776E5;
 }
 
 .message {
@@ -60,8 +65,12 @@
   margin: 0 auto;
   display: block;
   text-transform: uppercase;
-  text-decoration: underline;
   margin-bottom: 20px;
+}
+
+.restartBtn:hover {
+  color: #6776E5;
+  cursor: pointer;
 }
 
 .attempts {
@@ -69,4 +78,20 @@
   text-align: center;
   text-transform: uppercase;
   font-weight: 700;
+  margin-bottom: 3.125rem;
+}
+
+.history_title,
+.history_value {
+  text-align: center;
+}
+
+.history_title {
+  color: #353232;
+  text-transform: uppercase;
+  margin-bottom: 0.3125rem;
+}
+
+.history_value {
+  color: #353232;
 }

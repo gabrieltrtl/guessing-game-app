@@ -7,8 +7,6 @@ const checkTentativas = () => {
 }
 
 const restartGame = (req, res) => {
-  console.log('Requisição para reiniciar recebida!');
-
   numeroSecreto = Math.floor(Math.random() * 100) + 1;
   tentativas = 20;
   historico = [];
